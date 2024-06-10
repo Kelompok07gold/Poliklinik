@@ -15,12 +15,21 @@ class ArsipController extends Controller
 
         // Ambil data pendaftaran berdasarkan id_user
         $daftarPendaftaran = Pendaftaran::with('pasien')
-            ->where('pasien_id', $idUser)->where('status', 'terdaftar')
+            ->whereHas('pasien', function ($query) use ($idUser) {
+                $query->where('id_user', $idUser);
+            })
+            ->where('status', 'terdaftar')
             ->get();
 
+        // Ambil data pendaftaran selesai berdasarkan id_user
         $daftarSelesai = Pendaftaran::with('pasien')
-            ->where('pasien_id', $idUser)->where('status', 'selesai')
+            ->whereHas('pasien', function ($query) use ($idUser) {
+                $query->where('id_user', $idUser);
+            })
+            ->where('status', 'selesai')
             ->get();
+
+
         return view('page.arsip', compact('daftarPendaftaran', 'daftarSelesai'));
     }
 }

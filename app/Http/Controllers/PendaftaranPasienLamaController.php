@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pasien;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class PendaftaranPasienLamaController extends Controller
@@ -21,6 +22,10 @@ class PendaftaranPasienLamaController extends Controller
      */
     public function create(Request $request)
     {
+        $idUser = Auth::id();
+        $user = Auth::user(); // Mengambil informasi lengkap tentang pengguna yang sedang login
+        $roleUser = $user->role; // Anda harus menyesuaikan dengan struktur tabel dan field yang sesuai
+
         $request->validate([
             'nik' => 'required|regex:/^RM\d{4}$/'
         ]);
@@ -31,6 +36,10 @@ class PendaftaranPasienLamaController extends Controller
             return redirect()->back()->with('error', 'Pasien dengan nomor rekam medis tersebut tidak ditemukan.');
         }
 
+        // Melakukan pengkondisian berdasarkan id_user dan peran pengguna
+        if ($pasien->id_user !== $idUser && $roleUser !== 'admin') {
+            return redirect()->back()->with('error', 'Anda tidak memiliki akses.');
+        }
 
         Session::put('pasien_id', $pasien->id);
 

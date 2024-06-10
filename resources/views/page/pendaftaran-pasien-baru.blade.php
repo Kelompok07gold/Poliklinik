@@ -20,6 +20,11 @@
                 <form action="{{ route('pendaftaran-pasien-baru.create') }}" method="POST">
                     @csrf
                     <div class="form-group">
+                        <label for="no_rm">No RM</label>
+                        <input type="text" class="form-control" id="no_rm" name="no_rm" placeholder="Loading..."
+                            readonly>
+                    </div>
+                    <div class="form-group">
                         <label for="nik">NIK</label>
                         <input type="text" class="form-control" id="nik" name="nik" placeholder="Masukkan NIK">
                     </div>
@@ -83,5 +88,26 @@
         </script>
     @endif
 
+    <script>
+        $(document).ready(function() {
+            function fetchNextPatientNumber() {
+                $.ajax({
+                    url: '/get-next-patient-number',
+                    method: 'GET',
+                    success: function(response) {
+                        $('#no_rm').val(response.newPatientNumber);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error);
+                    }
+                });
+            }
 
+            // Fetch next patient number every second
+            setInterval(fetchNextPatientNumber, 1000);
+
+            // Initial fetch when the page loads
+            fetchNextPatientNumber();
+        });
+    </script>
 @endsection

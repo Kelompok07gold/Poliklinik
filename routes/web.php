@@ -83,3 +83,4 @@ Route::middleware(['isLogin'])->group(function () {
     Route::get('/data-awal-bulan-ini', [ArsipAdminController::class, 'dataAwalBulanIni']);
     Route::get('/data-awal-custom', [ArsipAdminController::class, 'dataAwalCustom']);
 });
+Route::get('/get-next-patient-number', [PendaftaranPasienBaruController::class, 'getNextPatientNumber']);

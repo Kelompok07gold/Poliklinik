@@ -22,22 +22,8 @@ class PendaftaranPasienBaruController extends Controller
     {
         //
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function getNextPatientNumber()
     {
-        $idUser = auth()->id();
-
-        // Check if the NIK already exists in the database
-        $existingPatient = Pasien::where('nik', $request->nik)->first();
-
-        if ($existingPatient) {
-            // Jika NIK sudah ada di database, beri respon error
-            return redirect()->back()->with('error', 'NIK sudah terdaftar.');
-        }
-
         // Mendapatkan nomor rekam medis terakhir dari database berdasarkan nomor rekam medis
         $lastPatient = Pasien::orderBy('no_rm', 'desc')->first();
 
@@ -56,9 +42,26 @@ class PendaftaranPasienBaruController extends Controller
         // Format nomor rekam medis baru dengan padding nol di depannya
         $newPatientNumber = sprintf("RM%04d", $nextPatientNumber);
 
+        return response()->json(['newPatientNumber' => $newPatientNumber]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $idUser = auth()->id();
+
+        // Check if the NIK already exists in the database
+        $existingPatient = Pasien::where('nik', $request->nik)->first();
+
+        if ($existingPatient) {
+            // Jika NIK sudah ada di database, beri respon error
+            return redirect()->back()->with('error', 'NIK sudah terdaftar.');
+        }
         // Simpan data pasien baru ke database
         Pasien::create([
-            'no_rm' => $newPatientNumber,
+            'no_rm' => $request->no_rm,
             'nik' => $request->nik,
             'nama' => $request->nama,
             'tempat_lahir' => $request->tempat_lahir,
@@ -72,7 +75,7 @@ class PendaftaranPasienBaruController extends Controller
         ]);
 
         // Redirect atau lakukan apa pun yang Anda butuhkan setelah menyimpan data
-        return redirect()->route('pendaftaran-pasien-baru.index')->with('success', 'Data pasien berhasil disimpan.');
+        return redirect()->route('pendaftaran-pasien-baru.index')->with('success', 'Data pasien berhasil disimpan cari di pasian lama sesuai no rm anda.');
     }
     /**
      * Display the specified resource.
