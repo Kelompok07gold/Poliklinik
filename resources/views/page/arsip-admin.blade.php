@@ -134,7 +134,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body text-center">
-                                    <img src="https://marketplace.canva.com/EAE4oLXwWVs/1/0/1600w/canva-biru-tua-dan-biru-kehijauan-gradasi-modern-dokter-logo-kesehatan-B5VpOl-RH1w.jpg"
+                                    <img src="foto/logo.png"
                                         alt="Logo" class="mb-3 d-block mx-auto"
                                         style="max-width: 30%; text-align: center;">
                                     <h5 class="modal-title" id="exampleModalLabel">Detail Pendaftaran</h5>

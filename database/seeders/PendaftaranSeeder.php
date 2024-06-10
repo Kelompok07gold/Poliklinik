@@ -15,17 +15,17 @@ class PendaftaranSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker::create();
+        // $faker = Faker::create();
 
-        for ($i = 0; $i < 10; $i++) {
-            Pendaftaran::create([
-                'pasien_id' => 1,
-                'no_antrian' => $faker->unique()->regexify('REG[0-9]{2}'),
-                'status' => $faker->randomElement(['Terdaftar', 'Selesai']),
-                'tanggal_pendaftaran' => Carbon::today(),
-                'pembayaran' => $faker->randomElement(['BPJS', 'Umum']),
-                'diagnosa' => $faker->text(),
-            ]);
-        }
+        // for ($i = 0; $i < 10; $i++) {
+        //     Pendaftaran::create([
+        //         'pasien_id' => 1,
+        //         'no_antrian' => $faker->unique()->regexify('REG[0-9]{2}'),
+        //         'status' => $faker->randomElement(['Terdaftar', 'Selesai']),
+        //         'tanggal_pendaftaran' => Carbon::today(),
+        //         'pembayaran' => $faker->randomElement(['BPJS', 'Umum']),
+        //         'diagnosa' => $faker->text(),
+        //     ]);
+        // }
     }
 }

@@ -41,8 +41,7 @@
                                             </div>
                                             <div class="modal-body text-center">
                                                 <!-- Tampilkan detail pendaftaran di sini -->
-                                                <img src="https://marketplace.canva.com/EAE4oLXwWVs/1/0/1600w/canva-biru-tua-dan-biru-kehijauan-gradasi-modern-dokter-logo-kesehatan-B5VpOl-RH1w.jpg"
-                                                    alt="Logo" class="mb-3 d-block mx-auto"
+                                                <img src="foto/logo.png" alt="Logo" class="mb-3 d-block mx-auto"
                                                     style="max-width: 30%; text-align: center;">
                                                 <h5 class="modal-title" id="exampleModalLabel">Detail Pendaftaran</h5>
                                                 <p>No. RM: {{ $pendaftaran->pasien->no_rm }}</p>
@@ -100,8 +99,8 @@
                                             </div>
                                             <div class="modal-body text-center">
                                                 <!-- Tampilkan detail pendaftaran di sini -->
-                                                <img src="https://marketplace.canva.com/EAE4oLXwWVs/1/0/1600w/canva-biru-tua-dan-biru-kehijauan-gradasi-modern-dokter-logo-kesehatan-B5VpOl-RH1w.jpg"
-                                                    alt="Logo" class="mb-3 d-block mx-auto" style="max-width: 30%;">
+                                                <img src="foto/logo.png" alt="Logo" class="mb-3 d-block mx-auto"
+                                                    style="max-width: 30%;">
                                                 <h5 class="modal-title" id="exampleModalLabel">Detail Pendaftaran</h5>
                                                 <p>No. RM: {{ $selesai->pasien->no_rm }}</p>
                                                 <p>No. Antrian: {{ $selesai->no_antrian }}</p>
